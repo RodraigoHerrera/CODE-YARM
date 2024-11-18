@@ -26,7 +26,7 @@ include 'conexion.php';
 
 // Obtener datos del formulario
 $correo = trim($_POST['correo']);
-$contrasena = trim($_POST['contraseña']);
+$contrasena = trim($_POST['contrasena']);
 
 // Buscar usuario en la base de datos
 $sql = "SELECT * FROM usuarios WHERE email = ?";
