@@ -22,7 +22,7 @@ if (time() < $_SESSION['bloqueado_hasta']) {
 }
 
 // Conexión a la base de datos
-include 'conexion.php';
+include '../model/conexion.php';
 
 // Obtener datos del formulario
 $correo = trim($_POST['correo']);
