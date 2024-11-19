@@ -40,11 +40,17 @@ if ($result->num_rows > 0) {
 
     // Verificar la contraseña
     if (password_verify($contrasena, $usuario['contraseña'])) {
-        echo "Inicio de sesión exitoso. ¡Bienvenido!";
-        
         // Reiniciar los intentos fallidos si la autenticación es exitosa
         $_SESSION['intentos_fallidos'] = 0;
         $_SESSION['bloqueado_hasta'] = 0;
+
+        // Decidir a qué página redirigir
+        if ($correo == 'ana.gomez@example.com') { // Reemplaza con el correo del administrador
+            header('Location: ../views/admin.php');
+        } else {
+            header('Location: ../views/usuario.php');
+        }
+        exit();
     } else {
         // Incrementar intentos fallidos
         $_SESSION['intentos_fallidos']++;
@@ -64,4 +70,3 @@ if ($result->num_rows > 0) {
 $stmt->close();
 $conn->close();
 ?>
-
