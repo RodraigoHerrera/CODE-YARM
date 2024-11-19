@@ -32,6 +32,14 @@
             
             <span class="text-sm ml-1 text-blue-500 font-medium cursor-pointer">¿Olvidaste tu contraseña?</span>
           </div>
+
+          <?php
+            // Si hay un mensaje de error, lo muestra
+            $error_message = $error_message ?? '';
+            if ($error_message != '') {
+                echo '<div class="text-red-600">' . $error_message . '</div>';
+            }
+          ?>
       
           <button type="submit" class="mt-5 bg-[#151717] border-none text-white text-[15px] font-medium rounded-lg h-[50px] w-full cursor-pointer">
             Iniciar sesión
@@ -41,6 +49,7 @@
             <span class="text-blue-500 font-medium cursor-pointer">Regístrate</span></p>
       
         </form>
+        
       </div>
       
 </body>

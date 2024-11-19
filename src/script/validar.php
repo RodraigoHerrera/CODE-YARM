@@ -17,7 +17,8 @@ if (!isset($_SESSION['bloqueado_hasta'])) {
 // Verificar si el usuario está bloqueado
 if (time() < $_SESSION['bloqueado_hasta']) {
     $tiempoRestante = ($_SESSION['bloqueado_hasta'] - time());
-    echo "Acceso bloqueado. Inténtalo después de " . gmdate("i:s", $tiempoRestante) . " minutos.";
+    $error_message = "Acceso bloqueado. Inténtalo después de " . gmdate("i:s", $tiempoRestante) . " minutos.";
+    include '../views/login.php';
     exit();
 }
 
@@ -27,6 +28,7 @@ include '../model/conexion.php';
 // Obtener datos del formulario
 $correo = trim($_POST['correo']);
 $contrasena = trim($_POST['contrasena']);
+$error_message = '';
 
 // Buscar usuario en la base de datos
 $sql = "SELECT * FROM usuarios WHERE email = ?";
@@ -57,10 +59,14 @@ if ($result->num_rows > 0) {
 
         if ($_SESSION['intentos_fallidos'] >= $maxIntentos) {
             $_SESSION['bloqueado_hasta'] = time() + $tiempoBloqueo;
-            echo "Demasiados intentos fallidos. Acceso bloqueado por 5 minutos.";
+            $error_message = "Demasiados intentos fallidos. Acceso bloqueado por 5 minutos.";
+            include '../views/login.php'; // Incluye el HTML con el mensaje de error
+            exit();
         } else {
             $intentosRestantes = $maxIntentos - $_SESSION['intentos_fallidos'];
-            echo "Contraseña incorrecta. Intentos restantes: $intentosRestantes";
+            $error_message = "Contraseña incorrecta. Intentos restantes: $intentosRestantes";
+            include '../views/login.php'; // Incluye el HTML con el mensaje de error
+            exit();
         }
     }
 } else {

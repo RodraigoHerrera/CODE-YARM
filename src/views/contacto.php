@@ -101,7 +101,6 @@
             </div>
             <div class="headings *:text-center *:leading-4">
                 <p class="text-xl font-serif font-semibold text-[#434955]">PATRICIA QUEZADA</p>
-                <p class="text-sm font-semibold text-[#434955]">ADMIN</p>
             </div>
             <div class="w-full items-center justify-center flex">
                 <ul
