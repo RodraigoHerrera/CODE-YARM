@@ -3,7 +3,7 @@
 <?php
 include '../model/conexion.php';
 // ID del producto correspondiente a la Pizza Margherita
-$sql = "SELECT productos.nombre AS producto, ingredientes.nombre AS ingrediente, recetas.cantidad, ingredientes.unidad_medida, productos.id  AS lol 
+$sql = "SELECT productos.nombre AS producto, ingredientes.nombre AS ingrediente, recetas.cantidad, ingredientes.unidad_medida, productos.id  AS lol, recetas.id AS lol1 
         FROM recetas
         INNER JOIN productos ON recetas.producto_id = productos.id
         INNER JOIN ingredientes ON recetas.ingrediente_id = ingredientes.id
@@ -48,7 +48,7 @@ $result = $conn->query($sql);
                                         <th class='py-2 px-4 border-b bg-gray-100'>Ingrediente</th>
                                         <th class='py-2 px-4 border-b bg-gray-100'>Cantidad</th>
                                         <th class='py-2 px-4 border-b bg-gray-100'>Unid.</th>
-                                        <th class='py-2 px-4 border-b bg-gray-100' colspan= '2'>Opciones</th>
+                                        <th class='py-2 px-4 border-b bg-gray-100'>Opcion</th>
                                     </tr>
                                 </thead>
                                 <tbody>";
@@ -59,7 +59,7 @@ $result = $conn->query($sql);
                     echo "<td class='py-4 px-4 border-b text-center'>" . htmlspecialchars($row['ingrediente']) . "</td>";
                     echo "<td class='py-4 px-4 border-b text-center'>" . htmlspecialchars($row['cantidad']) . "</td>";
                     echo "<td class='py-4 px-4 border-b text-center'>" . htmlspecialchars($row['unidad_medida']) . "</td>";
-                    echo "<td class='py-4 px-4 border-b text-center'><a href='' class='bg-red-600 text-white py-2 px-4 rounded-md'>Eliminar</a></td>";
+                    echo "<td class='py-4 px-4 border-b text-center'><a href='../script/eliminar.php?codigo=".htmlspecialchars($row['lol1']) ."' class='bg-red-600 text-white py-2 px-4 rounded-md'>Eliminar</a></td>";
                     echo "</tr>";
                 }
 
