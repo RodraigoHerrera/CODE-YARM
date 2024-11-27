@@ -3,7 +3,7 @@
 <?php
 include '../model/conexion.php';
 // ID del producto correspondiente a la Pizza Margherita
-$sql = "SELECT productos.nombre AS producto, ingredientes.nombre AS ingrediente, recetas.cantidad, ingredientes.unidad_medida 
+$sql = "SELECT productos.nombre AS producto, ingredientes.nombre AS ingrediente, recetas.cantidad, ingredientes.unidad_medida, productos.id  AS lol 
         FROM recetas
         INNER JOIN productos ON recetas.producto_id = productos.id
         INNER JOIN ingredientes ON recetas.ingrediente_id = ingredientes.id
@@ -37,7 +37,10 @@ $result = $conn->query($sql);
                         // Actualizar el producto actual y crear un nuevo título y tabla
                         $producto_actual = $row['producto'];
                         echo "<div class='mb-8 '>";
-                        echo "<h2 class='text-2xl font-semibold text-purple-800 mb-4'>$producto_actual</h2>";
+                        echo "<div class= 'flex items-center mb-4'>
+                            <h2 class='text-2xl font-semibold text-purple-800 pr-5'>$producto_actual</h2>
+                            <a href='modIngrediente.php?codigo=".htmlspecialchars($row['lol']) ."' class='bg-yellow-300 py-2 px-4 rounded-md'>Editar</a>
+                        </div>";
 
                         echo "<table class=' min-w-full bg-white border border-gray-300 mb-6 '>
                                 <thead>
@@ -56,8 +59,7 @@ $result = $conn->query($sql);
                     echo "<td class='py-4 px-4 border-b text-center'>" . htmlspecialchars($row['ingrediente']) . "</td>";
                     echo "<td class='py-4 px-4 border-b text-center'>" . htmlspecialchars($row['cantidad']) . "</td>";
                     echo "<td class='py-4 px-4 border-b text-center'>" . htmlspecialchars($row['unidad_medida']) . "</td>";
-                    echo "<td class='py-4 px-4 border-b text-center'><a href='modIngrediente.php' class='bg-yellow-300 py-2 px-4 rounded-md'>Editar</a></td>";
-                    echo "<td class='py-4 px-4 border-b text-center'><a href='modIngrediente.php' class='bg-yellow-300 py-2 px-4 rounded-md'>Editar</a></td>";
+                    echo "<td class='py-4 px-4 border-b text-center'><a href='' class='bg-red-600 text-white py-2 px-4 rounded-md'>Eliminar</a></td>";
                     echo "</tr>";
                 }
 
