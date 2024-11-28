@@ -31,6 +31,7 @@ $result = $conn->query($sql);
                         echo "<p class='text-lg text-green-600 font-bold'>Bs.- " . htmlspecialchars($row['precio_venta']) . "</p>";
                         echo "</div>";
                         echo "<div class='flex items-center mr-5'>";
+                        echo "<input type='text' class='w-10 h-8 text-center border rounded-md border-black mr-2'>";
                         echo "<button type='submit' class='bg-green-600 text-white  rounded-full  hover:bg-blue-600 w-10 h-10'>+</button>";
                         echo "</div>";
                         echo "</div>";
