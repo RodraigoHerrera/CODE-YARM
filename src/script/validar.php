@@ -2,7 +2,7 @@
 session_start(); // Inicia la sesión para registrar intentos fallidos
 
 // Configuración del sistema de bloqueo
-$maxIntentos = 3; // Máximo de intentos permitidos
+$maxIntentos = 5; // Máximo de intentos permitidos
 $tiempoBloqueo = 300; // Tiempo de bloqueo en segundos (5 minutos)
 
 // Inicializar variables de sesión
@@ -45,6 +45,9 @@ if ($result->num_rows > 0) {
         // Reiniciar los intentos fallidos si la autenticación es exitosa
         $_SESSION['intentos_fallidos'] = 0;
         $_SESSION['bloqueado_hasta'] = 0;
+
+        // Guardar ID del usuario en la sesión
+        $_SESSION['usuario_id'] = $usuario['id'];
 
         // Decidir a qué página redirigir
         if ($correo == 'ana.gomez@example.com') { // Reemplaza con el correo del administrador

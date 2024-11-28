@@ -98,6 +98,20 @@ if ($result_ingredientes->num_rows > 0) {
                 } 
                 else {
                     echo "<p class='text-center text-gray-600'>No se encontraron recetas para el producto especificado.</p>";
+                    echo "<table id='tabla-ingredientes' class='min-w-full bg-white border border-gray-300 mb-6'>
+                            <thead>
+                                <tr>
+                                    <th class='py-2 px-4 border-b bg-gray-100'>Ingrediente</th>
+                                    <th class='py-2 px-4 border-b bg-gray-100'>Cantidad</th>
+                                    <th class='py-2 px-4 border-b bg-gray-100'>Unid.</th>
+                                </tr>
+                            </thead>
+                            <tbody>";
+                    echo "</tbody></table></div>";
+                    echo "<div class='text-center mt-4'>
+                    <button type='button' onclick='agregarFila()' class='bg-green-500 text-white py-2 px-4 rounded-md'>+</button>
+                    <button type='submit' class='bg-green-500 text-white py-2 px-4 rounded-md'>Confirmar</button>
+                    </div>";
                 }
 
                 // Cerrar conexión
